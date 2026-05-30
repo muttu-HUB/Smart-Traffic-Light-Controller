@@ -1,17 +1,99 @@
-Smart Traffic Light Controller
+Smart Traffic Light Controller 
 
-![Image 1](Smart_Traffic_Light_Controller_formatted.md/picture2.png)
 
-Smart Traffic Light Controller using Verilog HDL
-
-![Image 2](Smart_Traffic_Light_Controller_formatted.md/Picture1.png)
 
 Introduction
 
-![Image 3](Smart_Traffic_Light_Controller_formatted.md/picture3.png)
 
 Traffic congestion is one of the major problems in modern cities due to the increasing number of vehicles and inefficient traffic management systems. Conventional traffic signal systems use fixed timing allocation irrespective of actual traffic density, resulting in unnecessary waiting time, traffic jams, fuel consumption, and delays.
+This project presents a Smart Traffic Light Controller using Verilog HDL based on Moore Finite State Machine (FSM) architecture. The controller dynamically adjusts the GREEN signal timing according to traffic density conditions.
+The hardware design was implemented and verified using Xilinx Vivado 2024.1 FPGA design suite.
+This project is suitable for:
+•	FPGA Learning
+•	VLSI Mini Projects
+•	Verilog HDL Practice
+________________________________________
+Project Features
+•	Moore FSM Based Design
+•	Density-Based Adaptive Traffic Control
+•	Dynamic GREEN Signal Timing
+•	LOW- and High-Density Detection
+•	Verilog RTL Design
+•	Behavioural Simulation
+•	RTL Schematic Generation
+•	FPGA Synthesis and Implementation
+•	Vivado Simulation Verification
+________________________________________
+FSM State Diagram
 
+![Image 1](Smart_Traffic_Light_Controller_formatted.md/picture2.png)
+FSM Lookup Table
+Present State	State Code	Highway Signal	Side Signal	Next State	Timing
+S0  	00	  GREEN	  RED	    S1	 HGT
+S1	  01	  YELLOW	 RED	    S2	 2 cycles
+S2	  10	  RED	    GREEN	  S3	 SGT
+S3	  11	  RED	    YELLOW	 S0	 2 cycles
+________________________________________
+Traffic Signal Encoding
+Signal	Binary
+RED	100
+YELLOW	010
+GREEN	001
+
+Methodology
+The traffic controller operates using a Moore FSM consisting of four states.
+The controller continuously monitors traffic density inputs:
+•	00 → LOW Density
+•	10 → HIGH Density
+The GREEN signal timing dynamically changes according to traffic conditions.
+LOW Density
+When traffic density is LOW:
+•	GREEN signal remains active for 5 cycles
+HIGH Density
+When traffic density is HIGH:
+•	GREEN signal remains active for 12 cycles
+This adaptive timing mechanism reduces unnecessary waiting time and improves traffic flow efficiency.
+Traffic Density Logic
+
+Density Type	Binary	GREEN Signal Time
+LOW Density	00	5 cycles
+HIGH Density	10	12 cycles
+
+
+![Image 2](Smart_Traffic_Light_Controller_formatted.md/Picture1.png)
+
+Verilog RTL Design
+The RTL design includes:
+•	FSM state transition logic
+•	Smart timing control logic
+•	Traffic light output generation
+•	Density-based timing allocation
+________________________________________
+
+Testbench Verification
+A Verilog testbench was developed to verify:
+•	FSM transitions
+•	Reset operation
+•	LOW density timing
+•	HIGH density timing
+•	Traffic signal outputs
+________________________________________
+RTL Schematic View
+![Image 3](Smart_Traffic_Light_Controller_formatted.md/picture3.png)
+Behavioral simulation was successfully verified in Vivado.
+The waveform confirms:
+•	Proper FSM transitions
+•	Correct traffic signal sequencing
+•	Dynamic GREEN signal timing adjustment
+LOW Density Result
+•	GREEN signal duration = 5 cycles
+HIGH Density Result
+•	GREEN signal duration = 12 cycles
+________________________________________
+
+
+
+Output Waveforms 
 ![Image 4](Smart_Traffic_Light_Controller_formatted.md/picture4.png)
 
 This project presents a Smart Traffic Light Controller using Verilog HDL based on Moore Finite State Machine (FSM) architecture. The controller dynamically adjusts the GREEN signal timing according to traffic density conditions.
